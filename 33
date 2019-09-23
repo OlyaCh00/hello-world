@@ -10,9 +10,9 @@ def func(a, b):
         x = b
         y = a
     while x % y != 0 :
-        temp = int(x)
+        t = x
         x = y
-        y = temp % x
+        y = t % x
     return y
 
 for i in range(1, 10):
