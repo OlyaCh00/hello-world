@@ -19,3 +19,30 @@ namespace Problem
         }
     }
 }
+
+
+//понравившееся решение. На больших числах будет работать быстрее, потому что решение оптимизировано.
+private int[] generatePrimes(int upperLimit){
+List<int> primes = new List<int>();
+    bool isPrime;
+    int j;
+ 
+    primes.Add(2);
+ 
+    for (int i = 3; i <= upperLimit; i += 2) {
+        j = 0;
+        isPrime = true;
+        while (primes[j]*primes[j] <= i) {
+            if (i % primes[j] == 0) {
+                isPrime = false;
+                break;
+            }
+            j++;
+        }
+        if (isPrime) {
+            primes.Add(i);
+        }
+    }
+ 
+    return primes.ToArray<int>();
+}
