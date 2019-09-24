@@ -23,3 +23,20 @@ for i in range(1, 10):
                 nomproduct *= nom
 denproduct /= func(nomproduct, denproduct)
 print(int(denproduct))
+
+\\понравившееся решение, т.к. использование нового для меня модуля fractions 
+from fractions import Fraction
+
+start = time.time()
+x = 1
+for i in range(10, 100):
+    for j in range(i, 100):
+        z = Fraction(i, j)
+        if z != int(z):
+            a, b = map(int, str(z).split('/'))
+            if i != a:
+                if str(i)[1] == str(j)[0]:
+                    if int(str(j)[1]) != 0:
+                        if int(str(i)[0]) / int(str(j)[1]) == a / b:
+                            x *= z
+print(str(x).split('/')[1])
