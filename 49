@@ -23,3 +23,35 @@ for prime in primes:
                 + prime[i+1])  for i in range(len(prime) - 1) if (prime[i+1] -
                 prime[i]) + prime[i+1] in prime][0]
 print (result)
+
+
+#понравившееся решение, т.к. код разделен на функции
+def primes_less_than(n):
+    #classic Erasthostene sieve
+    sieve = [1]*n
+    sieve[0],sieve[1] = 0, 0
+    for i in range(2,int(n**0.5)+1):
+        if sieve[i] == 1:
+            for j in range(i*i,n,i):
+                sieve[j] = 0
+    return [i for i,j in enumerate(sieve) if j == 1]
+
+def is_prime(n):
+    if n==1 or (n!=2 and n%2==0):
+        return False
+    else:
+        for i in range(3,int(n**0.5+1),2):
+            if n%i ==0:
+                return False
+    return True
+
+primes4 = [p for p in primes_less_than(10000) if p>1000 and '0' not in set(str(p)) ]
+
+ans = []
+for i,p1 in enumerate(primes4):
+    for j,p2 in enumerate(primes4[i+1:]):
+        if set(str(p1)) == set(str(p2)):
+            p3 = p2+p2-p1
+            if is_prime(p3) and set(str(p3)) == set(str(p2)) and p3<10000:
+                ans.append((p1,p2,p3))
+print(ans)
