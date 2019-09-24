@@ -2,6 +2,20 @@ x = 1
 y = 1
 n = 2
 while len(str(x)) != 1000:
-    x, y = x+y, x
+    x, y = x + y, x
     n = n + 1
 print(n)
+
+\\понравившееся решение, т.к. более читаемо в плане действий с переменными, чем мое.
+a_1 = 1
+a_2 = 1
+index = 2
+while True:
+    F = a_1 + a_2
+    if len(str(F)) == 1000:
+        index += 1
+        break
+    a_2 = a_1
+    a_1 = F
+    index += 1
+print(index)
