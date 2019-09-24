@@ -1,0 +1,25 @@
+import math
+import itertools
+
+def is_prime(x):
+    if x == 2:
+        return True
+    if x % 2 == 0 or x == 1:
+        return False
+    for i in range(3, int(math.sqrt(x)) + 1, 2):
+        if x % i == 0:
+            return False
+    return True
+
+primes = [set(int(''.join(j)) for j in itertools.permutations(str(i))
+              if is_prime(int(''.join(j))) and int(''.join(j)) > 999)
+          for i in range(1000, 10000) if is_prime(i)]
+primes = [sorted(i) for i in primes if len(i) > 2]
+for prime in primes:
+    if [str(prime[i]) + str(prime[i+1]) + str((prime[i+1] - prime[i]) +
+        prime[i+1])  for i in range(len(prime) - 1) if (prime[i+1] -
+        prime[i]) + prime[i+1] in prime]:
+        result = [str(prime[i]) + str(prime[i+1]) + str((prime[i+1] - prime[i])
+                + prime[i+1])  for i in range(len(prime) - 1) if (prime[i+1] -
+                prime[i]) + prime[i+1] in prime][0]
+print (result)
